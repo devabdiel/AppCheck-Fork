@@ -27,7 +27,12 @@ public class SwiftAppcheckPlugin: NSObject, FlutterPlugin {
 
     public func checkAvailability (uri: String) -> Bool {
         let url = URL(string: uri)
-        return UIApplication.shared.canOpenURL(url!)
+        
+        if (url != nil) {
+            return UIApplication.shared.canOpenURL(url!)
+        }
+
+        return false;
     }
 
     public func launchApp (uri: String, result: @escaping FlutterResult) {
