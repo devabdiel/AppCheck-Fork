@@ -55,10 +55,9 @@ class AppCheck {
         isSystemApp: app["system_app"],
       );
     } else if (Platform.isIOS) {
-      bool appAvailable =
-          await _channel.invokeMethod("checkAvailability", args);
+      final appAvailable = await _channel.invokeMethod("checkAvailability", args);
       if (!appAvailable) {
-        throw PlatformException(code: "", message: "App not found $uri");
+        return null;
       }
       return AppInfo(packageName: uri);
     }
